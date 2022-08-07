@@ -87,10 +87,4 @@ public class P2J3 {
 		
 		return result;
 	}
-	
-	
-	public static void main(String[] args) {
-
-		
-	}
 }

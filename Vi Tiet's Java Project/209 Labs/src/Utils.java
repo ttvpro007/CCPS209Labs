@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiFunction;
 
 public class Utils {
@@ -59,5 +61,24 @@ public class Utils {
 			intArray[i] = intArray[intArray.length - i - 1];
 			intArray[intArray.length - i - 1] = temp;
 		}
+	}
+	
+	public static Map<Integer, Integer> getIntegerElementFrequencyMap(List<Integer> integersList) {
+		
+		Map<Integer, Integer> intFrequencyMap = new HashMap<>();
+		
+		for (int integer : integersList) {
+			
+			if ( intFrequencyMap.containsKey(integer) ) {
+				
+				intFrequencyMap.put(integer, intFrequencyMap.get(integer) + 1);
+			}
+			else {
+				
+				intFrequencyMap.put(integer, 1);
+			}
+		}
+		
+		return intFrequencyMap;
 	}
 }
