@@ -2,11 +2,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class P2J2 {
-	
-	public static void Print(Object message) {
-		System.out.println(message);
-	}
-	
 
 	public static String removeDuplicates(String text) {
 		
