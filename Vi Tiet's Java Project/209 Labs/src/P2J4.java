@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class P2J4 {
 
@@ -13,11 +12,19 @@ public class P2J4 {
 //		
 //	}
 	
-	
 	public static void sortByElementFrequency(List<Integer> items) {
 		
-		Map<Integer, Integer> integerFrequencyMap = Utils.getIntegerElementFrequencyMap(items);
-		
+		var integerFrequencySortedByValueThenKeyMap = Utils.sortByValueThenKey( Utils.getElementFrequencyMap(items), Utils.SORT_ORDER.DESCENDING, Utils.SORT_ORDER.ASCENDING );
+
+		int setIndex = 0;
+		for ( var e : integerFrequencySortedByValueThenKeyMap.entrySet() ) {
+			
+			for (int i = 0; i < e.getValue(); i++) {
+				
+				items.set( setIndex, e.getKey() );
+				setIndex++;
+			}
+		}
 	}
 	
 	
@@ -28,10 +35,8 @@ public class P2J4 {
 	
 	public static void main(String[] args) {
 
-		Map<Integer, Integer> m = Utils.getIntegerElementFrequencyMap( Arrays.asList(4, 4, 4, 4, 2, 2, 99999, 99999) );
-		
-		m.entrySet().forEach( entry -> {
-			Utils.print( entry.getKey() + ":" + entry.getValue() );
-		});
+		List<Integer> a = Arrays.asList(42, 42, 17, 42, 42, 17, 5, 5);
+		sortByElementFrequency(a);
+		Utils.print(a);
 	}
 }
