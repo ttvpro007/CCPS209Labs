@@ -15,25 +15,33 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 public class Lissajous extends JPanel implements ActionListener {
+	
+	public static void display(int size) {
+		
+		Lissajous lissajous = new Lissajous(size);
+		
+		JFrame f = new JFrame("Lissajous Demo");
+		
+		f.add(lissajous);
+		f.pack();
+		f.setVisible(true);
+		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	}
 
 	public Lissajous(int size) {
 		
-		this.setPreferredSize( new Dimension(SIZE, SIZE) );
+		this.size = size;
 		
-		JLabel aLabel = new JLabel("a:");
-		aTextField = new JTextField(TEXT_FIELD_COLUMNS);
-		aTextField.setText("6");
-		aTextField.addActionListener(this);
+		this.setPreferredSize( new Dimension(size, size) );
 		
-		JLabel bLabel = new JLabel("b:");
-		bTextField = new JTextField(TEXT_FIELD_COLUMNS);
-		bTextField.setText("5");
-		bTextField.addActionListener(this);
+		JLabel aLabel = JLabelFactory.create("a:");
+		aTextField = JTextFieldFactory.create(TEXT_FIELD_COLUMNS, "6", this);
 		
-		JLabel deltaLabel = new JLabel("delta:");
-		deltaTextField = new JTextField(TEXT_FIELD_COLUMNS);
-		deltaTextField.setText("0.5");
-		deltaTextField.addActionListener(this);
+		JLabel bLabel = JLabelFactory.create("b:");
+		bTextField = JTextFieldFactory.create(TEXT_FIELD_COLUMNS, "5", this);
+		
+		JLabel deltaLabel = JLabelFactory.create("delta:");
+		deltaTextField = JTextFieldFactory.create(TEXT_FIELD_COLUMNS, "0.5", this);
 		
 		var layout = new FlowLayout();
 		
@@ -52,10 +60,17 @@ public class Lissajous extends JPanel implements ActionListener {
 		super.paintComponent(g);
 		
 		try {
-
-			int a = Integer.parseInt( aTextField.getText() );
-			int b = Integer.parseInt( bTextField.getText() );
-			double delta = Double.parseDouble( deltaTextField.getText() );
+			
+			int a = (int) Utils.eval( aTextField.getText() );
+			aTextField.setText( Integer.toString(a) );
+			
+			int b = (int) Utils.eval( bTextField.getText() );
+			bTextField.setText( Integer.toString(b) );
+			
+			double delta = Utils.eval( deltaTextField.getText() );
+			delta = Utils.round(delta, 2);
+			deltaTextField.setText( Double.toString(delta) );
+			
 			int gdc = Utils.gcd(a, b);
 			
 			Graphics2D g2D = (Graphics2D) g;
@@ -67,8 +82,8 @@ public class Lissajous extends JPanel implements ActionListener {
 			
 			for (double t = 0; t < a / gdc * b; t += STEP ) {
 
-				double x = SIZE / 2 + 2 * SIZE / 5 * Math.sin(a * t * Math.PI + delta);
-				double y = SIZE / 2 + 2 * SIZE / 5 * Math.sin(b * t * Math.PI);
+				double x = size / 2 + 2 * size / 5 * Math.sin(a * t * Math.PI + delta);
+				double y = size / 2 + 2 * size / 5 * Math.sin(b * t * Math.PI);
 				
 				if (t == 0) {
 					
@@ -94,22 +109,16 @@ public class Lissajous extends JPanel implements ActionListener {
 		this.repaint();
 	}
 	
-	public static void display() {
+	public static void main(String[] args) {
 		
-		var lissajous = new Lissajous(1);
-		
-		var f = new JFrame("Lissajous Demo");
-		
-		f.add(lissajous);
-		f.pack();
-		f.setVisible(true);
-		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		Lissajous.display(500);
 	}
 
-	private static final int SIZE = 500;
 	private static final int TEXT_FIELD_COLUMNS = 10;
 	private static final float STROKE_THICKNESS = 3.0f;
 	private static final double STEP = 0.005;
+	
+	private int size;
 	private JTextField aTextField;
 	private JTextField bTextField;
 	private JTextField deltaTextField;

@@ -1,4 +1,5 @@
 import java.util.Map.Entry;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,6 +12,8 @@ import java.util.stream.Collectors;
 
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class Utils {
 	
@@ -309,5 +312,41 @@ public class Utils {
 	            return x;
 	        }
 	    }.parse();
+	}
+	
+	public static int clamp(int value, int min, int max) {
+
+		return Math.min( Math.max(min, value), max );
+	}
+	
+	public static double clamp(double value, double min, double max) {
+
+		return Math.min( Math.max(min, value), max );
+	}
+	
+	public static double lerp(double a, double b, double t) {
+
+		t = clamp(t, 0, 1);
+		return t * (b - a) + a;
+	}
+	
+	public static int Oscillate(int value, int min, int max)
+	{
+		value = clamp(value, min, max);
+	    int range = max - min;
+	    return min + Math.abs( ( (value + range) % (range * 2) ) - range );
+	}
+	
+	public static double Oscillate(double value, double min, double max)
+	{
+		value = clamp(value, min, max);
+		double range = max - min;
+	    return min + Math.abs( ( (value + range) % (range * 2) ) - range );
+	}
+	
+	public static double round(double value, int places) {
+		
+		double scale = Math.pow(10, places);
+		return Math.round(value * scale) / scale;
 	}
 }
