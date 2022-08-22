@@ -1,5 +1,8 @@
-import java.util.Map.Entry;
-import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,13 +10,10 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
-
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import java.util.stream.Stream;
 
 public class Utils {
 	
@@ -348,5 +348,72 @@ public class Utils {
 		
 		double scale = Math.pow(10, places);
 		return Math.round(value * scale) / scale;
+	}
+	
+	public static void CreateFile(String fileName) {
+		
+		try {
+			
+			File file = new File(fileName);
+			
+			if ( file.createNewFile() ) {
+				
+				Utils.print("Created " + fileName + " successfully");
+			}
+			else {
+
+				Utils.print("File " + fileName + " is already exist");
+			}
+		}
+		catch (IOException e) {
+			
+			Utils.print(e);
+			e.printStackTrace();
+		}
+	}
+	
+	public static void WriteToFile(String fileName, String content) {
+		
+		try {
+
+			FileWriter fileWriter = new FileWriter(fileName);
+			fileWriter.write(content);
+			fileWriter.close();
+			Utils.print("Wrote to file " + fileWriter + " successfully");
+		}
+		catch (IOException e) {
+
+			Utils.print(e);
+			e.printStackTrace();
+		}
+	}
+	
+	public static List<Integer> getPrimes() {
+		
+		try ( var stream = Files.lines( Paths.get("Primes.txt") ) ) {
+			
+			return stream.flatMap( s -> Stream.of( s.split("\\R") ) )
+						 .map(Integer::valueOf)
+						 .collect( Collectors.toList() );
+		}
+		catch (IOException e) {
+			
+			Utils.print(e);
+		}
+		
+		return null;
+	}
+
+	public interface Callable {
+		
+		public void call();
+	}
+	
+	public static void printExecutionTime(Callable c) {
+		
+		var start = System.currentTimeMillis();
+		c.call();
+		var end = System.currentTimeMillis();
+		print( (end - start) );
 	}
 }

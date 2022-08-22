@@ -135,4 +135,17 @@ public class SieveOfAtkin {
     		}
     	};
     }
+    
+    public long kthPrime(int k) {
+    	
+    	int count = 0;
+    	
+    	for ( var p : getGenerator() ) {
+    		
+    		if (count >= k) return p;
+    		count++;
+    	}
+    	
+    	return -1;
+    }
 }

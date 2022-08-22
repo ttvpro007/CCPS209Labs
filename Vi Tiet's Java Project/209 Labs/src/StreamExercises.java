@@ -20,10 +20,10 @@ public class StreamExercises {
 		try ( var stream = Files.lines(path) ) {
 						
 			return stream.flatMap( s -> Stream.of( s.toLowerCase().split("[^a-z]+") ) )
-					  .filter( s -> !s.isEmpty() )
-					  .sorted()
-					  .distinct()
-					  .collect( Collectors.toList() );
+					  	 .filter( s -> !s.isEmpty() )
+					  	 .sorted()
+					  	 .distinct()
+					  	 .collect( Collectors.toList() );
 		}
 	}
 }
