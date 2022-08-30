@@ -1,4 +1,5 @@
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
@@ -15,7 +16,7 @@ public class GraphicsUtils {
 		g2D.draw(path);
 	}
 	
-	public static void drawLine(Graphics2D g2D, Point pointFrom, Point pointTo) {
+	public static void drawLine(Graphics2D g2D, Vector2 pointFrom, Vector2 pointTo) {
 		
 		drawLine( g2D, pointFrom.getX(), pointFrom.getY(), pointTo.getX(), pointTo.getY() );
 	}
@@ -26,7 +27,7 @@ public class GraphicsUtils {
 		drawLine(g2D, x0, y0, x1, y1);
 	}
 	
-	public static void drawSolidLine(Graphics2D g2D, Point pointFrom, Point pointTo) {
+	public static void drawSolidLine(Graphics2D g2D, Vector2 pointFrom, Vector2 pointTo) {
 
 		GraphicsUtils.setSolidStroke(g2D, 1);
 		drawLine(g2D, pointFrom, pointTo);
@@ -38,7 +39,7 @@ public class GraphicsUtils {
 		drawLine(g2D, x0, y0, x1, y1);
 	}
 	
-	public static void drawDashedLine(Graphics2D g2D, Point pointFrom, Point pointTo, float strokeSize, int dashLength) {
+	public static void drawDashedLine(Graphics2D g2D, Vector2 pointFrom, Vector2 pointTo, float strokeSize, int dashLength) {
 
 		GraphicsUtils.setDottedStroke(g2D, strokeSize, dashLength);
 		drawLine(g2D, pointFrom, pointTo);
@@ -52,7 +53,7 @@ public class GraphicsUtils {
 		g2D.draw(e);
 	}
 	
-	public static void drawCircle(Graphics2D g2D, Point center, double diameter, boolean fill) {
+	public static void drawCircle(Graphics2D g2D, Vector2 center, double diameter, boolean fill) {
 		
 		drawCircle(g2D, center.getX(), center.getY(), diameter, fill);
 	}
@@ -60,6 +61,16 @@ public class GraphicsUtils {
 	public static void drawRect(Graphics2D g2D, double x, double y, double w, double h) {
 
 		g2D.draw( new Rectangle2D.Double(x, y, w, h) );
+	}
+	
+	public static void drawRect(Graphics2D g2D, double x, double y, double w, double h, Color color) {
+
+		var r = new Rectangle2D.Double(x, y, w, h);
+		Color baseColor = g2D.getColor();
+		g2D.setColor(color);
+		g2D.fill(r);
+		g2D.draw(r);
+		g2D.setColor(baseColor);
 	}
 	
 	public static void drawGridRect(Graphics2D g2D, double x, double y, double w, double h, int sections, double offset) {
@@ -106,12 +117,12 @@ public class GraphicsUtils {
 	
 	public static void setSolidStroke(Graphics2D g2D, float strokeSize) {
 		
-		g2D.setStroke( new BasicStroke(strokeSize, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND) );
+		g2D.setStroke( new BasicStroke(strokeSize, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER) );
 	}
 	
 	public static void setDottedStroke(Graphics2D g2D, float strokeSize, int dashLength) {
 		
-		g2D.setStroke( new BasicStroke(strokeSize, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{dashLength}, 0) );
+		g2D.setStroke( new BasicStroke(strokeSize, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER, 1, new float[]{dashLength}, 0) );
 	}
 	
 	public static void setAntiAliasing(Graphics2D g2D, boolean on) {

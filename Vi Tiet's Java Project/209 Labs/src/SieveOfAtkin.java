@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 //https://stackoverflow.com/questions/1569127/c-implementation-of-the-sieve-of-atkin
 public class SieveOfAtkin {
@@ -5,16 +7,14 @@ public class SieveOfAtkin {
     private int[] buf = null;
     private long cnt = 0;
     private static byte[] modPRMS = { 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 49, 53, 59, 61 };
-    private static int[] modLUT;
+    private static int[] modLUT = { 1, 0, 0, 0, 2, 0, 4, 0, 0, 0, 8, 0, 16, 0, 0, 0, 32, 0, 0, 0, 0, 0, 64,
+    								0, 128, 0, 0, 0, 0, 0, 256, 0, 0, 0, 512, 0, 1024, 0, 0, 0, 2048, 0,
+    								4096, 0, 0, 0, 8192, 0, 0, 0, 0, 0, 16384, 0, 32768, 0, 0, 0, 0, 0 };
     private static byte[] cntLUT;
     
     //initialization and all the work producing the prime bit array done in the constructor...
-    public SieveOfAtkin(long range) {
-    	modLUT = new int[60];
-        for (int i = 0, m = 0; i < modLUT.length; ++i) {
-            if ((i & 1) != 0 || (i + 7) % 3 == 0 || (i + 7) % 5 == 0) modLUT[i] = 0;
-            else modLUT[i] = (int)(1 << (m++));
-        }
+    public SieveOfAtkin(int range) {
+
         cntLUT = new byte[65536];
         for (int i = 0; i < cntLUT.length; ++i) {
             var c = 0;
@@ -27,13 +27,13 @@ public class SieveOfAtkin {
                 cnt = 1;
                 if (range > 2) this.cnt += (long)(range - 1) / 2;
             }
-            this.buf = new int[0];
+            buf = new int[0];
         }
         else {
             this.cnt = 3;
             var nrng = range - 7; var lmtw = nrng / 60;
             //initialize sufficient wheels to non-prime
-            this.buf = new int[(int) (lmtw + 1)];
+            buf = new int[(int) (lmtw + 1)];
 
             //Put in candidate primes:
             //for the 4 * x ^ 2 + y ^ 2 quadratic solution toggles - all x odd y...
@@ -81,19 +81,19 @@ public class SieveOfAtkin {
             }
 
             //Eliminate squares of base primes, only for those on the wheel:
-            for (int w = 0, pd = 0, pn = 0, msk = 1; w < this.buf.length;) {
+            for (int w = 0, pd = 0, pn = 0, msk = 1; w < buf.length;) {
             	int p = pd + modPRMS[pn];
                 long sqr = (long)p * (long)p; //to handle ranges above UInt32.MaxValue
                 if (sqr > range) break;
-                if ((this.buf[w] & msk) != 0) { //found base prime, square free it...
+                if ((buf[w] & msk) != 0) { //found base prime, square free it...
                     long s = sqr - 7;
                     for (int j = 0; s <= nrng && j < modPRMS.length; s = sqr * modPRMS[j] - 7, ++j) {
                         var cd = s / 60; var cm = (int)(modLUT[(int) (s % 60)] ^ 0xFFFF);
                         //may need ulong loop index for ranges larger than two billion
                         //but buf length only good to about 2^31 * 60 = 120 million anyway,
                         //even with large array setting and half that with 32-bit...
-                        for (long c = cd; c < (long)this.buf.length; c += sqr) {
-                            this.buf[(int) c] &= cm;
+                        for (long c = cd; c < (long)buf.length; c += sqr) {
+                            buf[(int) c] &= cm;
                         }
                     }
                 }
@@ -104,14 +104,14 @@ public class SieveOfAtkin {
             //clear any overflow primes in the excess space in the last wheel/word:
             var ndx = nrng % 60; //clear any primes beyond the range
             for (; modLUT[(int) ndx] == 0; --ndx) ;
-            this.buf[(int) lmtw] &= (int)((modLUT[(int) ndx] << 1) - 1);
+            buf[(int) lmtw] &= (int)((modLUT[(int) ndx] << 1) - 1);   
         }
     }
 
     //uses a fast pop count Look Up Table to return the total number of primes...
     public long getCount() {
         long cnt = this.cnt;
-        for (int i = 0; i < this.buf.length; ++i) cnt += cntLUT[this.buf[i]];
+        for (int i = 0; i < buf.length; ++i) cnt += cntLUT[buf[i]];
         return cnt;
     }
     
@@ -136,16 +136,23 @@ public class SieveOfAtkin {
     	};
     }
     
-    public long kthPrime(int k) {
+    public List<Integer> getPrimesFrom(int lower) {
     	
-    	int count = 0;
+    	List<Integer> primes = new ArrayList<>();
     	
-    	for ( var p : getGenerator() ) {
-    		
-    		if (count >= k) return p;
-    		count++;
-    	}
-    	
-    	return -1;
+    	if (lower <= 2) primes.add(2);
+        if (lower <= 3) primes.add(3);
+        if (lower <= 5) primes.add(5);
+		int pd = 0;
+        for (int w = 0, pn = 0, msk = 1; w < buf.length;) {
+            if ((buf[w] & msk) != 0) { //found a prime bit...
+            	int p = pd + modPRMS[pn];
+            	if (p >= lower) { primes.add(p); } //add it to the list
+            }
+            if (msk >= 0x8000) { msk = 1; pn = 0; ++w; pd += 60; }
+            else { msk <<= 1; ++pn; }
+        }
+        
+        return primes;
     }
 }

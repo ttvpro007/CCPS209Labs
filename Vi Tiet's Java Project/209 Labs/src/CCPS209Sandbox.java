@@ -1,33 +1,8 @@
 
+
 public class CCPS209Sandbox {
 	
 	public static void main(String[] args) {
-
-		Utils.print(Primes.kthPrime(5));
-		Utils.print(Primes.getPrimes());
-		Utils.print(Primes.kthPrime(11));
-		Utils.print(Primes.getPrimes());
-		Utils.print(Primes.kthPrime(20));
-		Utils.print(Primes.getPrimes());
-		Utils.print(Primes.kthPrime(42));
-		Utils.print(Primes.getPrimes());
-		Utils.print(Primes.kthPrime(100));
-		Utils.print(Primes.getPrimes());
-		Utils.print(Primes.kthPrime(444));
-		Utils.print(Primes.kthPrime(1234));
-		Utils.print(Primes.kthPrime(2500));
-		Utils.print(Primes.kthPrime(9999));
-		Utils.print(Primes.kthPrime(12345));
-		Utils.print(Primes.kthPrime(30000));
-		Utils.print(Primes.kthPrime(67890));
-		Utils.print(Primes.kthPrime(123456));
-		Utils.print(Primes.getPrimes());
-		
-//		Utils.print(Primes.sieveOfAtkinRange(0, 215));
-		
-		
-//		Utils.print(Primes.sieveOfAtkinRange(48, 215));
-//		Utils.print(Primes.sieveOfAtkinRange(0, 997));
 		
 //		class PrimeGenCaller implements Utils.Callable {
 //

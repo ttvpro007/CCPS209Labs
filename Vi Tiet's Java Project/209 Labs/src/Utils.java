@@ -416,4 +416,24 @@ public class Utils {
 		var end = System.currentTimeMillis();
 		print( (end - start) );
 	}
+	
+	public static int wrap(int index, int range) {
+		
+		return ( (index % range) + range ) % range;
+	}
+	
+	public static boolean validBracketCount(char openBracket, char closeBracket, String s) {
+		
+		int count = 0;
+		
+		if ( s.isBlank() || s.isEmpty() ) return false;
+		
+		for ( var c : s.toCharArray() ) {
+			
+			if (c == openBracket) count += 1;
+			if (c == closeBracket) count -= 1;
+		}
+		
+		return count == 0;
+	}
 }
