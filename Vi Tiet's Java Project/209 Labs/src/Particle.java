@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.Random;
 
 public class Particle {
@@ -8,6 +9,8 @@ public class Particle {
 		y = rng.nextInt(height);
 		
 		heading = Math.PI * 2 * rng.nextDouble();
+		
+		color = new Color( rng.nextInt(255), rng.nextInt(255), rng.nextInt(255) );
 	}
 	
 	public double getX() {
@@ -18,6 +21,11 @@ public class Particle {
 	public double getY() {
 		
 		return y;
+	}
+	
+	public Color getColor() {
+		
+		return color;
 	}
 	
 	public void Move() {
@@ -33,4 +41,5 @@ public class Particle {
 	private double x;
 	private double y;
 	private double heading;
+	private Color color;
 }

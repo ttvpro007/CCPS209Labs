@@ -22,6 +22,22 @@ public class P2J3 {
 				addIndex++;
 			}
 		}
+
+//		int start = 0;
+//		for (int i = 1; i <= items.length; i++) {
+//			if (i == items.length || items[i] <= items[i - 1]) {
+//				int chunkStart = start;
+//				int chunkEnd = i - 1;
+//				while (chunkStart < chunkEnd) {
+//					int temp = items[chunkStart];
+//					items[chunkStart] = items[chunkEnd];
+//					items[chunkEnd] = temp;
+//					chunkStart++;
+//					chunkEnd--;
+//				}
+//				start = i;
+//			}
+//		}
 	}
 	
 	

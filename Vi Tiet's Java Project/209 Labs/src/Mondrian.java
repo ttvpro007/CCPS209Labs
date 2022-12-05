@@ -65,14 +65,16 @@ public class Mondrian extends JPanel implements ActionListener {
 			
 			if (w > h) {
 				
-				var rw = (int) rng.nextDouble( w * EDGE_BUFFER, w * (1 - EDGE_BUFFER) );
+				//var rw = (int) rng.nextDouble( w * EDGE_BUFFER, w * (1 - EDGE_BUFFER) );
+				var rw = (int) ( w * EDGE_BUFFER + (w - 2 * w * EDGE_BUFFER) * rng.nextDouble() );
 				
 				subdivide(tx, ty, rw, h, g2D);
 				subdivide(tx + rw, ty, w - rw, h, g2D);
 			}
 			else {
 
-				var rh = (int) rng.nextDouble( h * EDGE_BUFFER, h * (1 - EDGE_BUFFER) );
+				//var rh = (int) rng.nextDouble( h * EDGE_BUFFER, h * (1 - EDGE_BUFFER) );
+				var rh = (int) ( h * EDGE_BUFFER + (h - 2 * h * EDGE_BUFFER) * rng.nextDouble() );
 
 				subdivide(tx, ty, w, rh, g2D);
 				subdivide(tx, ty + rh, w, h - rh, g2D);

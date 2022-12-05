@@ -37,7 +37,7 @@ public class Head extends JPanel {
         
         // Add heads
         for (int i = 0; i < n; i++) {
-
+        	
             f.add(new Head());
         }
         
@@ -85,18 +85,30 @@ public class Head extends JPanel {
 	}
 	
 	private class HeadMouseListener extends MouseAdapter {
-				
+		
 		@Override
 		public void mouseEntered(MouseEvent e) {
-
+			
 			( (Head) e.getComponent() ).setSurprised(true);
 		}
+		
+//		@Override
+//		public void mousePressed(MouseEvent e) {
+//			
+//			( (Head) e.getComponent() ).setSurprised(true);
+//		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-
+			
 			( (Head) e.getComponent() ).setSurprised(false);
 		}
+		
+//		@Override
+//		public void mouseReleased(MouseEvent e) {
+//			
+//			( (Head) e.getComponent() ).setSurprised(false);
+//		}
 	}
 
 	private static final int PANEL_SIZE = 500;

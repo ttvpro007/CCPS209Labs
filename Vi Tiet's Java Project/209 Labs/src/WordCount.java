@@ -29,5 +29,4 @@ public class WordCount extends FileProcessor< List<Integer> > {
 
 		return Arrays.asList(characters, words, lines);
 	}
-
 }

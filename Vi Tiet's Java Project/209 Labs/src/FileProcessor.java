@@ -10,6 +10,11 @@ public abstract class FileProcessor<R> {
 	public final R processFile(BufferedReader in) throws IOException {
 		
 		startFile();
+//		String line;
+//		while ( ( line = in.readLine() ) != null ) {
+//			
+//			processLine(line);
+//		}
 		in.lines().forEach( line -> processLine(line) );
 		return endLine();
 	}
