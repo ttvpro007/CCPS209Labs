@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=JLabelFactory
+comment1.params=labelText
+comment1.target=javax.swing.JLabel\ create(java.lang.String)
+comment2.params=labelText
+comment2.target=JLabelFactory(java.lang.String)
+comment3.params=
+comment3.target=javax.swing.JLabel\ create()
+numComments=4

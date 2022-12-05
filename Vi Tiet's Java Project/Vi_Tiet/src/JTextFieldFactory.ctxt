@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=JTextFieldFactory
+comment1.params=columns\ defaultText\ listener
+comment1.target=javax.swing.JTextField\ create(int,\ java.lang.String,\ java.awt.event.ActionListener)
+comment2.params=columns\ defaultText\ listener
+comment2.target=JTextFieldFactory(int,\ java.lang.String,\ java.awt.event.ActionListener)
+comment3.params=
+comment3.target=javax.swing.JTextField\ create()
+numComments=4

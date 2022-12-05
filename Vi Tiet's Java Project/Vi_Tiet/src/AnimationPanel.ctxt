@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=AnimationPanel
+comment1.params=af\ step
+comment1.target=AnimationPanel(AnimationFrame,\ double)
+comment2.params=
+comment2.target=void\ terminate()
+comment3.params=g
+comment3.target=void\ paintComponent(java.awt.Graphics)
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+comment5.params=we
+comment5.target=void\ windowClosing(java.awt.event.WindowEvent)
+numComments=6

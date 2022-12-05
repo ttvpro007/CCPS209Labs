@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Primes
+comment1.params=
+comment1.target=java.util.List\ getPrimes()
+comment2.params=n
+comment2.target=boolean\ isPrime(int)
+comment3.params=k
+comment3.target=int\ kthPrime(int)
+comment4.params=n
+comment4.target=java.util.List\ factorize(int)
+comment5.params=lowerLimit\ upperLimit
+comment5.target=java.util.List\ sieveOfAtkinRange(int,\ int)
+comment6.params=limit
+comment6.target=void\ initializePrimes(int)
+comment7.params=upperLimit\ verbose
+comment7.target=void\ expandPrimes(int,\ boolean)
+numComments=8

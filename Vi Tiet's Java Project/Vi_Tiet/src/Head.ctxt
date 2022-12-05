@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Head
+comment1.params=n\ displayMode
+comment1.target=void\ display(int,\ Head.DISPLAY_MODE)
+comment2.params=
+comment2.target=Head()
+comment3.params=g
+comment3.target=void\ paintComponent(java.awt.Graphics)
+comment4.params=isSurprised
+comment4.target=void\ setSurprised(boolean)
+comment5.params=x\ y\ r
+comment5.target=void\ drawCircle(double,\ double,\ double)
+comment6.params=x\ y\ w\ h
+comment6.target=void\ drawRect(double,\ double,\ double,\ double)
+comment7.params=headPosition\ open
+comment7.target=void\ drawEyesOpen(double,\ boolean)
+comment8.params=headPosition\ open
+comment8.target=void\ drawMouth(double,\ boolean)
+numComments=9

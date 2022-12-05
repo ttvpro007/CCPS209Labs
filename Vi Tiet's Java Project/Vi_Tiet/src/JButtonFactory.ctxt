@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=JButtonFactory
+comment1.params=buttonText\ listener
+comment1.target=javax.swing.JButton\ create(java.lang.String,\ java.awt.event.ActionListener)
+comment2.params=buttonText\ listener
+comment2.target=JButtonFactory(java.lang.String,\ java.awt.event.ActionListener)
+comment3.params=
+comment3.target=javax.swing.JButton\ create()
+numComments=4

@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Polynomial
+comment1.params=
+comment1.target=void\ updatePowersAndCoefficients()
+comment10.params=other
+comment10.target=Polynomial\ multiply(Polynomial)
+comment2.params=coefficients
+comment2.target=Polynomial(int[])
+comment3.params=
+comment3.target=int\ getDegree()
+comment4.params=k
+comment4.target=int\ getCoefficient(int)
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment6.params=other
+comment6.target=boolean\ equals(java.lang.Object)
+comment7.params=other
+comment7.target=int\ compareTo(Polynomial)
+comment8.params=x
+comment8.target=long\ evaluate(int)
+comment9.params=other
+comment9.target=Polynomial\ add(Polynomial)
+numComments=11

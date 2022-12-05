@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=JPanelExtends
+comment1.params=sizeX\ sizeY\ components
+comment1.target=JPanelExtends(int,\ int,\ java.awt.Component[])
+numComments=2

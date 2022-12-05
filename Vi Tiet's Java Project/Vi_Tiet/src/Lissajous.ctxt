@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Lissajous
+comment1.params=size
+comment1.target=Lissajous(int)
+comment10.params=point
+comment10.target=void\ addToLissajousPoints(Vector2)
+comment11.params=
+comment11.target=void\ clearLissajousPoints()
+comment2.params=g2D\ t
+comment2.target=void\ update(java.awt.Graphics2D,\ double)
+comment3.params=cosineDegreeStep\ sineDegreeStep\ degreeAngle
+comment3.target=void\ setParams(double,\ double,\ double)
+comment4.params=
+comment4.target=void\ setIntersectPoint()
+comment5.params=
+comment5.target=void\ setCosinePoint()
+comment6.params=
+comment6.target=void\ setSinePoint()
+comment7.params=g2D
+comment7.target=void\ drawLissajous(java.awt.Graphics2D)
+comment8.params=g2D\ point\ length
+comment8.target=void\ drawGuideVerticalLine(java.awt.Graphics2D,\ Vector2,\ int)
+comment9.params=g2D\ point\ length
+comment9.target=void\ drawGuideHorizontalLine(java.awt.Graphics2D,\ Vector2,\ int)
+numComments=12

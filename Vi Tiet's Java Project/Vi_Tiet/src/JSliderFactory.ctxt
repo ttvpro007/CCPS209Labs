@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=JSliderFactory
+comment1.params=min\ max
+comment1.target=javax.swing.JSlider\ create(int,\ int)
+comment2.params=min\ max
+comment2.target=JSliderFactory(int,\ int)
+comment3.params=
+comment3.target=javax.swing.JSlider\ create()
+numComments=4

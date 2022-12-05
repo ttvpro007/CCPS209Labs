@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=JFrameExtends
+comment1.params=panels
+comment1.target=JFrameExtends(javax.swing.JPanel[])
+comment2.params=r
+comment2.target=void\ setupOnWindowClosing(java.lang.Runnable)
+comment3.params=we
+comment3.target=void\ windowClosing(java.awt.event.WindowEvent)
+comment4.params=
+comment4.target=void\ setupOnWindowClosing()
+comment5.params=show
+comment5.target=void\ activate(boolean)
+numComments=6
